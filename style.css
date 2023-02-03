@@ -130,6 +130,7 @@ body {
   font-size: 18px;
   float: right;
   margin-top: 15px;
+  text-transform: uppercase;
 }
 .main .carts .item .img {
   height: 50px;
@@ -218,14 +219,14 @@ body {
 }
 .modal-container .modal-overlay .body .btn{
     height: 35px;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
     border-radius: 5px;
     background-color: brown;
     border: none;
     padding: 5px 10px;
     margin-top: 20px;
-    color: rgb(248, 242, 242);
+    color: white;
 }
 .modal-container .modal-overlay .body .btn:active{
     background-color: rgb(220, 73, 73);

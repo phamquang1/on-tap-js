@@ -137,7 +137,7 @@ const handleNavigate = (type) => {
                   <img src="./assets/imgs/${product.img}" alt="" srcset="">
                 </div>
                 <p class="name"> ${product.name}</p>
-                <div class="price">${product.price}</div>
+                <div class="price">${product.price} $</div>
               </div>
               
               `;
@@ -146,7 +146,7 @@ const handleNavigate = (type) => {
         lstCarts.innerHTML =
           lstCarts.innerHTML +
           viewCarts +
-          `        <div class="total">Tổng: ${total}</div>
+          `        <div class="total">Tổng: ${total} $</div>
         `;
       }
 
