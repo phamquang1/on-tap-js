@@ -1,9 +1,53 @@
+"use strict";
+a = 7;
+console.log(a);
+var a;
+
+// b = 7;
+// console.log(b);
+// let b;
+
+// {
+//   let c = 5;
+//   console.log(c);
+// }
+// console.log(c);
+
+// {
+//   var d = 5;
+//   console.log(d);
+// }
+// console.log(d);
+
+// if (true) {
+//   let f = 5;
+// }
+// console.log(f);
+
+// if (true) {
+//   var f = 5;
+// }
+// console.log(f);
+const PRODUCTS = [
+  { id: 1, name: "Iphone", img: "4.jpg", price: 10 },
+  { id: 2, name: "Aphone", img: "5.jpg", price: 100 },
+  { id: 12, name: "SamSung", img: "6.jpg", price: 20 },
+  { id: 13, name: "Xiaomi", img: "7.jpg", price: 30 },
+  { id: 14, name: "Nokia", img: "8.jpg", price: 40 },
+  { id: 15, name: "Windows", img: "4.jpg", price: 60 },
+  { id: 16, name: "IOS", img: "6.jpg", price: 80 },
+  { id: 17, name: "Android", img: "5.jpg", price: 90 },
+  { id: 1333, name: "BOS", img: "8.jpg", price: 1000 },
+  { id: 133333, name: "ColorS", img: "7.jpg", price: 220 },
+  { id: 1234, name: "Macbook", img: "4.jpg", price: 110 },
+  { id: 2342341, name: "IPad", img: "6.jpg", price: 290 },
+];
 const products = localStorage.getItem("products")
   ? JSON.parse(localStorage.getItem("products"))
-  : ["iphone", "android", "xiaomi", "ios", "window", "chrome", "fire"];
+  : PRODUCTS;
 
 window.onload = function () {
-  // handleNavigate("home");
+  handleNavigate("home");
 };
 
 const handleNavigate = (type) => {
@@ -47,12 +91,12 @@ const handleNavigate = (type) => {
        
        <div class="product">
           <div class="img">
-            <img src="./assets/imgs/4.jpg" alt="" srcset="">
+            <img src="./assets/imgs/${product.img}" alt="" srcset="">
           </div>
-          <p class="name">Hi</p>
+          <p class="name">${product.name}</p>
           <div class="content">
-            <p class="price">20 $</p>
-            <i class="fa-solid fa-plus add-icon" id=${index} onclick="addProduct('${product}')"></i>
+            <p class="price">${product.price} $</p>
+            <i class="fa-solid fa-plus add-icon" id=${product.id} onclick="addProduct(${product.id})"></i>
           </div>
         </div>
        
@@ -83,24 +127,26 @@ const handleNavigate = (type) => {
         ? JSON.parse(localStorage.getItem("cart"))
         : [];
       if (carts.length) {
+        let total = 0;
         const viewCarts = carts
-          .map(
-            (product, index) => `
-        <div class="item">
-          <div class="img">
-            <img src="./assets/imgs/4.jpg" alt="" srcset="">
-          </div>
-          <p class="name"> ${product}</p>
-          <div class="price">20</div>
-        </div>
-        
-        `
-          )
+          .map((product, index) => {
+            total += product.price;
+            return `
+              <div class="item">
+                <div class="img">
+                  <img src="./assets/imgs/${product.img}" alt="" srcset="">
+                </div>
+                <p class="name"> ${product.name}</p>
+                <div class="price">${product.price}</div>
+              </div>
+              
+              `;
+          })
           .join("");
         lstCarts.innerHTML =
           lstCarts.innerHTML +
           viewCarts +
-          `        <div class="total">Tổng: xxx</div>
+          `        <div class="total">Tổng: ${total}</div>
         `;
       }
 
@@ -159,23 +205,27 @@ const handleNavigate = (type) => {
   }
 };
 
-const addProduct = (product) => {
+const addProduct = (id) => {
+  console.log(id);
   const cart = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
   if (cart.length) {
-    const p = cart.find((p) => p === product);
+    const p = cart.find((p) => p.id === id);
     console.log(p);
     if (p) {
     } else {
       console.log(cart);
+      const product = products.find((p) => p.id === id);
+      console.log(product);
       cart.push(product);
       localStorage.setItem("cart", JSON.stringify(cart));
-      alert("ban them thanh cong");
+      showModal(product.name);
     }
   } else {
+    const product = products.find((p) => p.id === id);
     localStorage.setItem("cart", JSON.stringify([product]));
-    alert("ban them thanh cong");
+    showModal(product.name);
   }
 };
 
@@ -196,4 +246,28 @@ const slideHtml = () => {
       </div>
     </div>
   `;
+};
+
+const showModal = (messager) => {
+  console.log(messager);
+  const modal = document.getElementById("modal");
+  modal.classList.remove("hide");
+  modal.innerHTML = `
+  <div class="modal-overlay">
+        <div class="body">
+          <div class="title">
+            Bạn đã mua <span>${messager}</span> thành công !
+          </div>
+          <button class="btn" onclick="confirm()">
+            Xác nhận
+          </button>
+        </div>
+      </div>`;
+  modal.classList.add("show");
+};
+const confirm = () => {
+  const modal = document.getElementById("modal");
+  modal.innerHTML += "";
+  modal.classList.remove("show");
+  modal.classList.add("hide");
 };
