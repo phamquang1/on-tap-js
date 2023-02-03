@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="./index.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="header" class="header">Header</header>
+    <div id="slide" class="p-5">
+      
+    </div>
+    <section class="main" id="main">
+      <div class="products" id="products">
+        <!-- <div class="product">
+          <div class="img">
+            <img src="./assets/imgs/4.jpg" alt="" srcset="">
+          </div>
+          <p class="name">Hi</p>
+          <div class="content">
+            <p class="price">20 $</p>
+            <i class="fa-solid fa-plus add-icon" id="${index}"></i>
+          </div>
+        </div> -->
+      </div>
+      <div id="carts" class="carts">
+        <!-- <div class="item">
+          <div class="img">
+            <img src="./assets/imgs/4.jpg" alt="" srcset="">
+          </div>
+          <p class="name">hi</p>
+          <div class="price">20</div>
+        </div>
+        <div class="total">Tổng: xxx</div> -->
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="tab" onclick="handleNavigate('home')">
+        <i class="fa-solid fa-house-user tab-icon home"></i>
+        <p class="name home">Trang chủ</p>
+      </div>
+      <div class="tab" onclick="handleNavigate('cart')">
+        <i class="fa-solid fa-cart-shopping tab-icon cart"></i>
+        <p class="name cart">Giỏ hàng</p>
+      </div>
+      <div class="tab" onclick="handleNavigate('messenger')">
+        <i class="fa-brands fa-facebook-messenger tab-icon messenger"></i>
+        <p class="name messenger">Tin nhắn</p>
+      </div>
+      <div class="tab" onclick="handleNavigate('user')">
+        <i class="fa-solid fa-user tab-icon user"></i>
+        <p class="name user">Tài khoản</p>
+      </div>
+    </footer>
+  </body>
+</html>
