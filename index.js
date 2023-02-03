@@ -214,6 +214,7 @@ const addProduct = (id) => {
     const p = cart.find((p) => p.id === id);
     console.log(p);
     if (p) {
+      showModal(p.name, false);
     } else {
       console.log(cart);
       const product = products.find((p) => p.id === id);
@@ -248,7 +249,7 @@ const slideHtml = () => {
   `;
 };
 
-const showModal = (messager) => {
+const showModal = (messager, buy = true) => {
   console.log(messager);
   const modal = document.getElementById("modal");
   modal.classList.remove("hide");
@@ -256,7 +257,11 @@ const showModal = (messager) => {
   <div class="modal-overlay">
         <div class="body">
           <div class="title">
-            Bạn đã mua <span>${messager}</span> thành công !
+          ${
+            buy
+              ? "Bạn đã mua <span>" + messager + "</span> thành công !"
+              : "Bạn đã mua <span>" + messager + "</span> rồi !"
+          } 
           </div>
           <button class="btn" onclick="confirm()">
             Xác nhận
@@ -267,7 +272,7 @@ const showModal = (messager) => {
 };
 const confirm = () => {
   const modal = document.getElementById("modal");
-  modal.innerHTML += "";
+  modal.innerHTML = "";
   modal.classList.remove("show");
   modal.classList.add("hide");
 };
