@@ -148,6 +148,8 @@ const handleNavigate = (type) => {
           viewCarts +
           `        <div class="total">Tổng: ${total} $</div>
         `;
+      } else {
+        lstCarts.innerHTML = "Giỏ hàng trống !";
       }
 
       //
