@@ -42,13 +42,18 @@ const PRODUCTS = [
   { id: 1234, name: "Macbook", img: "4.jpg", price: 110 },
   { id: 2342341, name: "IPad", img: "6.jpg", price: 290 },
 ];
+
+//  LOGIC: Lấy data ở localStorage, nếu có thì lấy dữ liệu ở local, nếu không có thì lấy data PRODUCTS
 const products = localStorage.getItem("products")
   ? JSON.parse(localStorage.getItem("products"))
   : PRODUCTS;
 
+// Load window xong thì mới chạy logic
 window.onload = function () {
   handleNavigate("home");
 };
+
+// onclick
 
 const handleNavigate = (type) => {
   console.log(type);
@@ -63,7 +68,7 @@ const handleNavigate = (type) => {
   const messenger = document.getElementsByClassName("messenger");
   const user = document.getElementsByClassName("user");
 
-  // reset
+  // Mỗi lần click thì reset lại html để thêm HTML mới
   lstProducts.innerHTML = "";
   lstCarts.innerHTML = "";
   slide.innerHTML = "";
@@ -72,6 +77,7 @@ const handleNavigate = (type) => {
     case "home": {
       console.dir(lstProducts);
       console.log(lstProducts);
+      // Chỉ thêm Slides khi vào Trang chủ
       slide.innerHTML += `
       <div class="slides">
         <div class="slide">
@@ -207,17 +213,24 @@ const handleNavigate = (type) => {
   }
 };
 
+// function thêm sản phẩm
+
 const addProduct = (id) => {
   console.log(id);
+
+  // Lấy cart từ local xem đã mua sản phẩm nào chưa
   const cart = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
   if (cart.length) {
-    const p = cart.find((p) => p.id === id);
+    // Trường hợp nếu có sản phẩm
+    const p = cart.find((p) => p.id === id); // check xem sản phẩm đã mua tồn tại trong giỏ hàng không
     console.log(p);
     if (p) {
-      showModal(p.name, false);
+      showModal(p.name, false); // show modal là đã mua sản phẩm đấy rồi
     } else {
+      // Chưa mua thì thêm đã mua sản phẩm
+
       console.log(cart);
       const product = products.find((p) => p.id === id);
       console.log(product);
@@ -251,6 +264,7 @@ const slideHtml = () => {
   `;
 };
 
+// funct show modal
 const showModal = (messager, buy = true) => {
   console.log(messager);
   const modal = document.getElementById("modal");
